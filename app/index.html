@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Feeding Tracker</title>
+    <link rel="stylesheet" href="./static/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">Feed Tracker</div>
+        <div class="form">
+            <label for="amount">Enter fed amount here in ML:</label>
+            <input type="text" id="amount" name="amount">
+            <label for="milk-type"></label>
+            <br>
+            <br>
+            <label for="milk-type">Milk Type:</label>
+            <select name="milk-type" id="milk-type">
+                <option value="Breast Milk">Breast Milk</option>
+                <option value="Formula">Formula</option>
+            </select>
+            <br>
+            <br>
+            <button type="button">Submit</button>
+        </div>
+        <div class="chart">
+            <table>
+                <tr>
+                    <th>Time Start</th>
+                    <th>Time End</th>
+                    <th>Duration</th>
+                    <th>Type</>
+                    <th>Amount</th>
+                </tr>
+                <tr>
+                    <td>12:00</td>
+                    <td>12:35</td>
+                    <td>35 Minutes</td>
+                    <td>Breast Milk</td>
+                    <td>100ML</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
