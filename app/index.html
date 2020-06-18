@@ -4,48 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby Feeding Tracker</title>
-    <link rel="stylesheet" href="./static/styles.css">
+    <title>Feed TrackerS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
-        <div class="header">Feed Tracker</div>
-        <div class="form">
-            <label for="amount">Enter fed amount here in ML:</label>
-            <input type="text" id="amount" name="amount">
-            <label for="milk-type"></label>
-            <br>
-            <br>
-            <label for="milk-type">Milk Type:</label>
-            <select name="milk-type" id="milk-type">
-                <option value="Breast Milk">Breast Milk</option>
-                <option value="Formula">Formula</option>
-            </select>
-            <br>
-            <br>
-            <button type="button">Submit</button>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title center">Track when you feed</span>
+                <form id="baby-form" class="row">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" class="placeholder" id="amount" name="amount">
+                            <label for="amount">Enter Amount in ML</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="milktype">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="formula">Formula</option>
+                                <option value="breastmilk">Breast Milk</option>
+                            </select>
+                            <label>Milk Type</label>
+                        </div>
+                        <div class="row center">
+                            <input type="submit" class="btn">
+                        </div>
+                    </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title center">Recent Feed Times</span>
+                </div>
+                <ul class="collection center"></ul>
+            </div>
         </div>
-        <div class="chart">
-            <table>
-                <tr>
-                    <th>Time Start</th>
-                    <th>Time End</th>
-                    <th>Duration</th>
-                    <th>Type</>
-                    <th>Amount</th>
-                </tr>
-                <tr>
-                    <td>12:00</td>
-                    <td>12:35</td>
-                    <td>35 Minutes</td>
-                    <td>Breast Milk</td>
-                    <td>100ML</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
+        <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="./static/app.js"></script>
 </body>
 
 </html>
