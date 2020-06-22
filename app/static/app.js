@@ -21,7 +21,7 @@ form.addEventListener('submit', (e) => {
     let time = moment().format("HH:mm")
     const rowInput = [`${amount.value}ML`, milkType.value, date, time]
 
-    let row = feedTable.insertRow()
+    let row = feedBody.insertRow()
     for (let i = 0; i <= rowInput.length - 1; i++) {
         let cell = row.insertCell(i)
         let text = document.createTextNode(rowInput[i])
