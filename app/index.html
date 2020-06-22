@@ -24,8 +24,8 @@
                         <div class="input-field col s6">
                             <select id="milktype">
                                 <option value="" disabled selected>Choose your option</option>
-                                <option value="formula">Formula</option>
-                                <option value="breastmilk">Breast Milk</option>
+                                <option value="Formula">Formula</option>
+                                <option value="Breast Milk">Breast Milk</option>
                             </select>
                             <label>Milk Type</label>
                         </div>
@@ -37,10 +37,26 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title center">Recent Feed Times</span>
+
                 </div>
-                <ul class="collection center"></ul>
+                <!-- <ul class="collection center"></ul> -->
+                <table class="striped collection" id="feed-table">
+                    <thead>
+                        <tr id="table-data">
+                            <th>Amount</th>
+                            <th>Milk Type</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+
+                    <!-- <tbody id="feed-body">
+                    </tbody> -->
+                </table>
             </div>
+
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.18.1/min/moment.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <!-- Compiled and minified JavaScript -->
