@@ -22,15 +22,13 @@ form.addEventListener('submit', (e) => {
     const time = new Date(now).toLocaleTimeString();
     const rowInput = [`${amount.value}ML`, milkType.value, date, time]
 
-    let row = feedBody.insertRow()
-    for (let i = 0; i <= rowInput.length - 1; i++) {
-        let cell = row.insertCell(i)
-        let text = document.createTextNode(rowInput[i])
+    const row = feedBody.insertRow()
+    for (let i = 0; i < rowInput.length; i++) {
+        const cell = row.insertCell(i)
+        const text = document.createTextNode(rowInput[i])
         cell.appendChild(text)
     }
     amount.value = ""
     milkType.value = "Choose your option"
     e.preventDefault()
-
-
 })
