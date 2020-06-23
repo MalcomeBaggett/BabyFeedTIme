@@ -17,8 +17,9 @@ form.addEventListener('submit', (e) => {
     // }
     // get date and time
     console.log(feedTable.rows[0].cells.length)
-    let date = moment().format("DD/MM/YYYY")
-    let time = moment().format("HH:mm")
+    const now = Date.now();
+    const date = new Date(now).toLocaleDateString();
+    const time = new Date(now).toLocaleTimeString();
     const rowInput = [`${amount.value}ML`, milkType.value, date, time]
 
     let row = feedBody.insertRow()
