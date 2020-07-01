@@ -1,22 +1,29 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const dotenv = require('dotenv')
-const app = express()
+const express = require("express");
+const dotenv = require("dotenv");
+const app = express();
+const connectDB = require("./config/db");
 
 // api routes
-const feedRoute = require('./routes/feedRoutes')
+const feedRoute = require("./routes/feedRoutes");
 
-
+// mount body-parser
+app.use(express.json());
 // configs
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
 dotenv.config({
-    path: './config/config.env'
-})
+  path: "./config/config.env",
+});
+// connect DB
+connectDB();
+
 // load routes
-app.use('/api/v1/feedRoutes', feedRoute)
-const PORT = process.env.PORT
-app.listen(PORT, () => {
-    console.log(`Running on port ${PORT}`)
-})
+app.use("/api/v1/feedRoutes", feedRoute);
+const PORT = process.env.PORT;
+const server = app.listen(PORT, () => {
+  console.log(`Running on port ${PORT}`);
+});
+
+// Handle unhandled promise rejections and for mongodb connection failure
+process.on("unhandledRejection", (err, promise) => {
+  console.log(`Error: ${err.message}`);
+  server.close(() => process.exit(1));
+});
