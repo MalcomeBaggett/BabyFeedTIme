@@ -1,36 +1,44 @@
 const Feed = require("../models/feedModel");
+const ErrorResponse = require('../utils/errorResponse')
+const asyncHandler = require('../middleware/async')
 
-exports.getFeedDatata = (req, res) => {
-  res.status(200).json({
-    status: "sucess",
-    log: "Getting all data",
-  });
-};
+exports.getFeedDatata = asyncHandler(async (req, res, next) => {
+    const feed = await Feed.find()
+    res.status(200).json({
+        status: "sucess",
+        data: feed,
+    });
+});
 
-exports.postFeedData = async (req, res) => {
-  try {
+exports.postFeedData = asyncHandler(async (req, res, next) => {
     const feed = await Feed.create(req.body);
     res.status(201).json({
-      success: true,
-      data: feed,
+        success: true,
+        data: feed,
     });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
+});
+
+exports.updateFeedData = asyncHandler(async (req, res, next) => {
+    const feed = await Feed.findByIdAndUpdate(req.body.id, red.body, {
+        new: true,
+        runValidators: true
+    })
+    if (!feed) {
+        return next(ErrorResponse(`No resource with ID of ${req.body.params} found`, 404))
+    }
+    res.status(200).json({
+        status: "sucess",
+        data: feed,
     });
-  }
-};
+});
 
-exports.updateFeedData = (req, res) => {
-  res.status(200).json({
-    status: "sucess",
-    log: `Updating ${req.params.id}`,
-  });
-};
-
-exports.deleteFeedData = (req, res) => {
-  res.status(200).json({
-    status: "sucess",
-    log: `Deleting ${req.params.id}`,
-  });
-};
+exports.deleteFeedData = asyncHandler(async (req, res, next) => {
+    const feed = await Feed.findByIdAndDelete(req.params.id)
+    if (!feed) {
+        return next(ErrorResponse(`No resource with ID of ${req.body.params} found`, 404))
+    }
+    res.status(200).json({
+        status: "sucess",
+        log: `Deleting ${req.params.id}`,
+    });
+});

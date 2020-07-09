@@ -1,36 +1,45 @@
 const Sleep = require('../models/sleepModel')
+const ErrorResponse = require('../utils/errorResponse')
+const asyncHandler = require('../middleware/async')
 
-exports.getSleepData = (req, res) => {
+exports.getSleepData = asyncHandler(async (req, res, next) => {
+    const sleep = await Sleep.find()
     res.status(200).json({
         status: "sucess",
-        log: "Getting all data",
+        log: sleep,
     });
-};
+});
 
-exports.postSleepData = async (req, res) => {
-    try {
-        const sleepTime = await Sleep.create(req.body);
-        res.status(201).json({
-            success: true,
-            data: sleepTime,
-        });
-    } catch (error) {
-        res.status(400).json({
-            success: false,
-        });
+exports.postSleepData = asyncHandler(async (req, res, next) => {
+    const sleepTime = await Sleep.create(req.body);
+    res.status(201).json({
+        success: true,
+        data: sleepTime,
+    });
+
+});
+
+exports.updateSleepData = asyncHandler(async (req, res, next) => {
+    const sleep = await Sleep.findByIdAndUpdate(req.body.id, req.body, {
+        new: true,
+        runValidators: true
+    })
+    if (!sleep) {
+        return next(ErrorResponse(`No resource with ID of ${req.body.params} found`, 404))
     }
-};
-
-exports.updateSleepData = (req, res) => {
     res.status(200).json({
         status: "sucess",
         log: `Updating ${req.params.id}`,
     });
-};
+});
 
-exports.deleteSleepData = (req, res) => {
+exports.deleteSleepData = asyncHandler(async (req, res, next) => {
+    const sleep = await Sleep.findByIdAndDelete(req.body.params)
+    if (!sleep) {
+        return next(ErrorResponse(`No resource with ID of ${req.body.params} found`, 404))
+    }
     res.status(200).json({
         status: "sucess",
-        log: `Deleting ${req.params.id}`,
+        log: {},
     });
-};
+});
