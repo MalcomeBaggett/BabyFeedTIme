@@ -1,6 +1,7 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const app = express()
+const errorHandler = require("./middleware/error")
 const connectDB = require("./config/db")
 
 // importing api routes
@@ -21,6 +22,7 @@ connectDB()
 app.use("/api/v1/feedRoutes", feedRoute);
 app.use("/api/v1/sleepRoutes", sleepRoute)
 app.use("/api/v1/diaperRoutes", diaperRouter)
+app.use(errorHandler)
 const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`)
